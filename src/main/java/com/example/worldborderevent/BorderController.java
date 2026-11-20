@@ -7,6 +7,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraft.commands.Commands;
@@ -104,6 +105,7 @@ public final class BorderController {
         if (event.phase != TickEvent.Phase.END || !eventRunning) return;
         eventTick++;
         overworldRadius = currentOverworldRadius();
+        if (eventTick % 10 == 0) for (ServerPlayer p : event.getServer().getPlayerList().getPlayers()) BorderNetwork.sendRadius(p, overworldRadius);
         if (eventTick >= INTRO_TICKS + MOVE_TICKS) {
             overworldRadius = eventStartRadius + RETREAT_BLOCKS;
             eventRunning = false;
@@ -111,6 +113,9 @@ public final class BorderController {
             event.getServer().getPlayerList().broadcastSystemMessage(Component.literal("§bГраница отступила. Ивент завершён."), false);
         }
     }
+
+    @SubscribeEvent
+    public static void onPlayerLogin(PlayerLoggedInEvent event) { if (event.getEntity() instanceof ServerPlayer p) BorderNetwork.sendRadius(p, overworldRadius); }
 
     @SubscribeEvent
     public static void enforceCustomBorder(TickEvent.PlayerTickEvent event) {

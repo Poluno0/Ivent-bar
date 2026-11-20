@@ -1,0 +1,1 @@
+package com.example.worldborderevent;public final class ClientBorderState{private static volatile double radius=10000;private ClientBorderState(){}public static void setRadius(double r){radius=Math.max(1,r);}public static double getRadius(boolean nether){return nether?radius/8:radius;}}

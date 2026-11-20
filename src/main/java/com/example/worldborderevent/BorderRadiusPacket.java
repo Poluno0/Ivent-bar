@@ -1,0 +1,3 @@
+package com.example.worldborderevent;
+import net.minecraft.network.FriendlyByteBuf;import net.minecraftforge.network.NetworkEvent;import net.minecraftforge.fml.DistExecutor;import net.minecraftforge.api.distmarker.Dist;import java.util.function.Supplier;
+public class BorderRadiusPacket {private final double radius;public BorderRadiusPacket(double r){radius=r;}public BorderRadiusPacket(FriendlyByteBuf b){radius=b.readDouble();}public void encode(FriendlyByteBuf b){b.writeDouble(radius);}public void handle(Supplier<NetworkEvent.Context> s){var c=s.get();c.enqueueWork(()->DistExecutor.unsafeRunWhenOn(Dist.CLIENT,()->()->ClientBorderState.setRadius(radius)));c.setPacketHandled(true);}}
