@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -58,6 +59,6 @@ public final class ClientBorderRenderer {
         put(v,m,x0,y0,z0,u0,v0,a,g,b);put(v,m,x1,y1,z1,u1,v1,a,g,b);put(v,m,x2,y2,z2,u2,v2,a,g,b);put(v,m,x3,y3,z3,u3,v3,a,g,b);
     }
     private static void put(VertexConsumer v,Matrix4f m,double x,double y,double z,float u,float t,float a,int g,int b){
-        v.vertex(m,(float)x,(float)y,(float)z).uv(u,t).color(60,g,b,(int)(a*255)).normal(0,0,1).endVertex();
+        v.vertex(m,(float)x,(float)y,(float)z).uv(u,t).color(60,g,b,(int)(a*255)).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(0,0,1).endVertex();
     }
 }
