@@ -3,9 +3,9 @@ loaderVersion="[47,)"
 license="MIT"
 [[mods]]
 modId="worldborderevent"
-version="0.1.0"
+version="0.2.0"
 displayName="World Border Event"
-description='Per-dimension border radius controls and scripted retreat-event prototype.'
+description='Cinematic textured energy barrier, animated retreat, resonance and particle effects.'
 [[dependencies.worldborderevent]]
 modId="forge"
 mandatory=true

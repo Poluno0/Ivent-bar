@@ -7,7 +7,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,7 +15,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.arguments.StringArgumentType;
+
 import java.util.Locale;
 
 @Mod.EventBusSubscriber(modid = WorldBorderEventMod.MODID)
@@ -89,7 +89,7 @@ public final class BorderController {
     }
 
     private static void playCue(MinecraftServer server, float volume, float pitch) {
-        for (ServerPlayer p : server.getPlayerList().getPlayers()) p.playSound(SoundEvents.AMBIENT_CAVE, volume, pitch);
+        for (ServerPlayer p : server.getPlayerList().getPlayers()) p.playSound(SoundEvents.AMBIENT_CAVE.get(), volume, pitch);
     }
 
     private static void stopEvent() {
