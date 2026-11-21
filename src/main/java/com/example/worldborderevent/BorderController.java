@@ -4,6 +4,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -73,6 +74,7 @@ public final class BorderController {
         eventTick = 0;
         eventRunning = true;
         source.getServer().getPlayerList().broadcastSystemMessage(Component.literal("§3§lГраница пробуждается...§r Начинается низкий гул."), false);
+        playCue(source.getServer(), 0.65f, 0.55f);
         return 1;
     }
 
@@ -82,7 +84,12 @@ public final class BorderController {
         eventTick = 0;
         eventRunning = true;
         source.getServer().getPlayerList().broadcastSystemMessage(Component.literal("§b§lИвент границы перезапущен.§r Гул возвращается..."), false);
+        playCue(source.getServer(), 0.9f, 0.65f);
         return 1;
+    }
+
+    private static void playCue(MinecraftServer server, float volume, float pitch) {
+        for (ServerPlayer p : server.getPlayerList().getPlayers()) p.playSound(SoundEvents.AMBIENT_CAVE, volume, pitch);
     }
 
     private static void stopEvent() {
@@ -105,7 +112,11 @@ public final class BorderController {
         if (event.phase != TickEvent.Phase.END || !eventRunning) return;
         eventTick++;
         overworldRadius = currentOverworldRadius();
-        if (eventTick % 10 == 0) for (ServerPlayer p : event.getServer().getPlayerList().getPlayers()) BorderNetwork.sendRadius(p, overworldRadius);
+        // Send each tick; client-side interpolation prevents stepped movement.
+        for (ServerPlayer p : event.getServer().getPlayerList().getPlayers()) BorderNetwork.sendRadius(p, overworldRadius);
+        if (eventTick == INTRO_TICKS || eventTick == INTRO_TICKS + 100 || eventTick == INTRO_TICKS + 250)
+            playCue(event.getServer(), 0.45f, 0.75f + (eventTick - INTRO_TICKS) / 500.0f);
+        if (eventTick == INTRO_TICKS + MOVE_TICKS - 1) playCue(event.getServer(), 1.0f, 0.9f);
         if (eventTick >= INTRO_TICKS + MOVE_TICKS) {
             overworldRadius = eventStartRadius + RETREAT_BLOCKS;
             eventRunning = false;
