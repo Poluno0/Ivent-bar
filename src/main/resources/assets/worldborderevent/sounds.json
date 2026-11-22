@@ -1,8 +1,0 @@
-{
-  "hum":       { "sounds": [ "worldborderevent:hum" ] },
-  "rumble":    { "sounds": [ "worldborderevent:rumble" ] },
-  "swell":     { "sounds": [ "worldborderevent:swell" ] },
-  "boom":      { "sounds": [ "worldborderevent:boom" ] },
-  "hit_light": { "sounds": [ "worldborderevent:hit_light" ] },
-  "hit_heavy": { "sounds": [ "worldborderevent:hit_heavy" ] }
-}
