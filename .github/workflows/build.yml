@@ -2,7 +2,7 @@ name: Build Forge mod
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main", "master", "stage-1-visible-wall" ]
   pull_request:
   workflow_dispatch:
 
