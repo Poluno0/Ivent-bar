@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+[[mods]]
+modId="worldborderevent"
+version="0.3.0"
+displayName="World Border Event"
+description='Cinematic textured energy barrier, animated retreat, resonance and particle effects.'
+[[dependencies.worldborderevent]]
+modId="forge"
+mandatory=true
+versionRange="[47.2,48)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.worldborderevent]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="BOTH"
