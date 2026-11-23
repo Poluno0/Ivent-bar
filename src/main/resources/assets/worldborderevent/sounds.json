@@ -1,0 +1,16 @@
+{
+  "hum":       { "sounds": [ "worldborderevent:hum" ] },
+  "rumble":    { "sounds": [ "worldborderevent:rumble" ] },
+  "awaken":    { "sounds": [ "worldborderevent:awaken" ] },
+  "drum":      { "sounds": [ "worldborderevent:drum" ] },
+  "boom":      { "sounds": [ "worldborderevent:boom" ] },
+  "retreat":   { "sounds": [ "worldborderevent:retreat" ] },
+  "thunder_1": { "sounds": [ "worldborderevent:thunder_1" ] },
+  "thunder_2": { "sounds": [ "worldborderevent:thunder_2" ] },
+  "thunder_3": { "sounds": [ "worldborderevent:thunder_3" ] },
+  "thunder_4": { "sounds": [ "worldborderevent:thunder_4" ] },
+  "pulse_a":   { "sounds": [ "worldborderevent:pulse_a" ] },
+  "pulse_b":   { "sounds": [ "worldborderevent:pulse_b" ] },
+  "hit_light": { "sounds": [ "worldborderevent:hit_light" ] },
+  "hit_heavy": { "sounds": [ "worldborderevent:hit_heavy" ] }
+}
